@@ -71,6 +71,10 @@ const FeaturesSection = () => {
           max-width: 600px;
         }
 
+        .titles {
+          padding-left: 6rem;
+        }
+
         .features {
           padding: 3rem 0;
         }
