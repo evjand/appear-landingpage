@@ -1,0 +1,30 @@
+{
+  "name": "appearlandingpage",
+  "private": true,
+  "version": "1.0.0",
+  "main": "package.json",
+  "author": "Anders Evjen <anders.evjen@purpl.no>",
+  "scripts": {
+    "build": "sanity build",
+    "dev": "sanity start",
+    "test": "sanity check"
+  },
+  "dependencies": {
+    "@sanity/base": "^1.148.5",
+    "@sanity/cli": "^1.148.6",
+    "@sanity/components": "^1.148.5",
+    "@sanity/core": "^1.148.5",
+    "@sanity/dashboard": "^1.148.5",
+    "@sanity/default-layout": "^1.148.5",
+    "@sanity/default-login": "^1.148.1",
+    "@sanity/desk-tool": "^1.148.6",
+    "@sanity/vision": "^1.148.1",
+    "bcp47": "^1.1.2",
+    "prop-types": "^15.6",
+    "react": "^16.2",
+    "react-dom": "^16.2",
+    "sanity-plugin-dashboard-widget-document-list": "*",
+    "sanity-plugin-dashboard-widget-netlify": "*"
+  },
+  "devDependencies": {}
+}

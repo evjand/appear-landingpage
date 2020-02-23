@@ -1,0 +1,24 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next",
+    "build": "next build && next export && node exportSitemap.js",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@sanity/block-content-to-react": "*",
+    "@sanity/client": "*",
+    "@sanity/image-url": "*",
+    "groq": "*",
+    "lodash": "*",
+    "next": "*",
+    "next-seo": "*",
+    "react": "*",
+    "react-dom": "*"
+  },
+  "devDependencies": {
+    "sitemap": "^2.1.0"
+  }
+}
