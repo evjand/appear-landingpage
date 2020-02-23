@@ -2,7 +2,7 @@ import Container from './Container'
 
 const DemoSection = () => {
   return (
-    <Container style={{ paddingBottom: '256px' }}>
+    <Container>
       <div className="demo">
         <div className="grid">
           <div className="left">
@@ -16,8 +16,10 @@ const DemoSection = () => {
             </div>
             <div className="before">
               <div className="before-image">
-                <img src="/AppearDemoBefore.png" alt="" />
+                <img className="demo-image" src="/AppearDemoBefore.png" alt="" />
+                <img className="striped-circle" src="/AppearStripedCircle.svg" alt="" />
               </div>
+              <img className="arrow" src="/AppearArrow.svg" alt="" />
             </div>
           </div>
           <img src="/AppearDemoAfter.png" alt="" />
@@ -40,6 +42,8 @@ const DemoSection = () => {
             font-size: 1.25rem;
             margin: 0;
             font-weight: 400;
+            line-height: 2rem;
+            max-width: 80%;
           }
 
           .text {
@@ -70,8 +74,17 @@ const DemoSection = () => {
             z-index: 1;
           }
 
-          .before-image img {
+          .before-image .demo-image {
             width: 100%;
+            height: auto;
+          }
+
+          .before-image .striped-circle {
+            position: absolute;
+            bottom: -3rem;
+            right: -2rem;
+            transform: rotate(22.5deg);
+            width: 6rem;
             height: auto;
           }
 
@@ -98,6 +111,10 @@ const DemoSection = () => {
             left: 1.5rem;
             border: 1px solid black;
             z-index: -1;
+          }
+
+          .arrow {
+            transform: translateX(4rem);
           }
         `}
       </style>

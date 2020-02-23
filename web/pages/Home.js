@@ -4,6 +4,7 @@ import client from '../client'
 import Layout from '../components/Layout'
 import HeroSection from '../components/HeroSection'
 import DemoSection from '../components/DemoSection'
+import GettingStartedSection from '../components/GettingStartedSection'
 
 const pageQuery = groq`
 *[_type == "route" && slug.current == $slug][0]{
@@ -33,6 +34,7 @@ const Home = ({ config }) => (
     <Layout config={config}>
       <HeroSection />
       <DemoSection />
+      <GettingStartedSection />
     </Layout>
   </>
 )

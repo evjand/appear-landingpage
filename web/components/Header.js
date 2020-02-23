@@ -28,7 +28,9 @@ const Header = props => {
               <a href="">Features</a>
             </li>
             <li>
-              <a href="">Resources</a>
+              <a href="" data-active>
+                Resources
+              </a>
             </li>
             <li>
               <a href="">Documentation</a>
@@ -73,7 +75,6 @@ const Header = props => {
       <style jsx>{`
         header {
           padding: 4rem;
-          font-weight: 500;
         }
         header :global(.container) {
           display: flex;
@@ -109,6 +110,11 @@ const Header = props => {
           font-size: 1.125rem;
           text-decoration: none;
           color: black;
+          font-weight: 400;
+        }
+
+        .main-menu a[data-active] {
+          font-weight: 500;
         }
 
         .cta {
@@ -121,6 +127,7 @@ const Header = props => {
           font-size: 0.875rem;
           text-decoration: none;
           color: black;
+          font-weight: 500;
         }
 
         .cta .try {

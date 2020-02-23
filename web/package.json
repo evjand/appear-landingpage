@@ -16,7 +16,8 @@
     "next": "*",
     "next-seo": "*",
     "react": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "react-syntax-highlighter": "^12.2.1"
   },
   "devDependencies": {
     "sitemap": "^2.1.0"
