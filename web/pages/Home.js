@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import groq from 'groq'
 import client from '../client'
+import Layout from '../components/Layout'
+import HeroSection from '../components/HeroSection'
+import DemoSection from '../components/DemoSection'
 
 const pageQuery = groq`
 *[_type == "route" && slug.current == $slug][0]{
@@ -21,15 +24,17 @@ const pageQuery = groq`
 }
 `
 
-const Home = () => (
-  <div className="container">
+const Home = ({ config }) => (
+  <>
     <Head>
       <title>Appear</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-
-    <h1>Hallo</h1>
-  </div>
+    <Layout config={config}>
+      <HeroSection />
+      <DemoSection />
+    </Layout>
+  </>
 )
 
 Home.getInitialProps = async ({ query }) => {
