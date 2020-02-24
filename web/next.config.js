@@ -1,3 +1,5 @@
+const withTM = require('next-transpile-modules')(['@iconscout/react-unicons'])
+
 const client = require('./client')
 const query = `
 {
@@ -31,7 +33,8 @@ const reduceRoutes = (obj, route) => {
   return obj
 }
 
-module.exports = {
+module.exports = withTM({
+  poweredByHeader: false,
   exportPathMap: function() {
     return client.fetch(query).then(res => {
       const { routes = [] } = res
@@ -42,4 +45,4 @@ module.exports = {
       return nextRoutes
     })
   }
-}
+})

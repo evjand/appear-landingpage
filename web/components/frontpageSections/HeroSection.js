@@ -1,4 +1,4 @@
-import Container from './Container'
+import Container from '../Container'
 
 const HeroSection = () => {
   return (
@@ -47,9 +47,10 @@ const HeroSection = () => {
 
           h1 {
             margin: 0;
-            font-size: 3.5rem;
+            font-size: 4rem;
+            line-height: 4.5rem;
             max-width: 60%;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
           }
 
           h1 a {
@@ -58,12 +59,12 @@ const HeroSection = () => {
 
           p {
             font-size: 1.25rem;
-            max-width: 50%;
+            max-width: 55%;
             margin: 0;
           }
 
           .cta {
-            padding-top: 3rem;
+            padding-top: 2rem;
             display: flex;
             align-items: center;
           }
@@ -87,7 +88,7 @@ const HeroSection = () => {
           }
 
           img {
-            width: 55%;
+            width: 50%;
             height: auto;
             position: absolute;
             top: 3rem;

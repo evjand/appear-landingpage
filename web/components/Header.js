@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import Container from './Container'
+import ArrowIcon from '@iconscout/react-unicons/icons/uil-arrow-right'
 
 const Header = props => {
   const { title = 'Missing title', navItems, logo } = props
@@ -38,18 +39,6 @@ const Header = props => {
             <li>
               <a href="">Support</a>
             </li>
-          </ul>
-        </nav>
-        <ul className="cta">
-          <li className="try">
-            <a href="">Try for free</a>
-          </li>
-          <li>
-            <a href="">Sign in</a>
-          </li>
-        </ul>
-        <nav>
-          <ul>
             {navItems &&
               navItems.map(item => {
                 const { slug, title, _id } = item
@@ -71,6 +60,16 @@ const Header = props => {
               })}
           </ul>
         </nav>
+        <ul className="cta">
+          <li className="try">
+            <a href="">Try for free</a>
+          </li>
+          <li className="signin">
+            <a href="">
+              Sign in <ArrowIcon />
+            </a>
+          </li>
+        </ul>
       </Container>
       <style jsx>{`
         header {
@@ -134,7 +133,21 @@ const Header = props => {
           padding: 0.5rem 1.5rem;
           background: #b4d4f9;
           border-radius: 4px;
-          margin-right: 0.5rem;
+          margin-right: 1rem;
+        }
+
+        .cta .signin a {
+          display: flex;
+          align-items: center;
+        }
+
+        .cta .signin a :global(svg) {
+          margin-top: -2px;
+        }
+
+        .cta .signin a:hover,
+        .main-menu a:hover {
+          text-decoration: underline;
         }
       `}</style>
     </header>

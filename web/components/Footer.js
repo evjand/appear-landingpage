@@ -3,6 +3,9 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import Container from './Container'
 
+import PinIcon from '@iconscout/react-unicons/icons/uil-map-marker-alt'
+import EnvelopeIcon from '@iconscout/react-unicons/icons/uil-envelope-alt'
+
 const Footer = props => {
   const { title = 'Missing title', navItems, logo } = props
   const router = useRouter()
@@ -108,8 +111,12 @@ const Footer = props => {
             <li>
               <h4>Appear</h4>
             </li>
-            <li>Nedre slottsgate 8, Oslo, Norway</li>
-            <li>support@appear.media</li>
+            <li className="grid">
+              <PinIcon></PinIcon>Nedre slottsgate 8, Oslo, Norway
+            </li>
+            <li className="grid">
+              <EnvelopeIcon></EnvelopeIcon>support@appear.media
+            </li>
           </ul>
         </nav>
         <section className="bottom">
@@ -161,6 +168,11 @@ const Footer = props => {
         li {
           margin-bottom: 1rem;
           line-height: 1;
+        }
+
+        li.grid {
+          display: grid;
+          grid-template-columns: 3rem 1fr;
         }
 
         ul li:first-child {

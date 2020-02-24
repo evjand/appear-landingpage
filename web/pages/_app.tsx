@@ -1,7 +1,8 @@
 import React from 'react'
-import BaseApp from 'next/app'
+import BaseApp, { AppContext } from 'next/app'
 import client from '../client'
 import '../styles/main.css'
+import { NextPage, NextPageContext } from 'next'
 
 const siteConfigQuery = `
   *[_id == "global-config"] {
@@ -19,15 +20,15 @@ const siteConfigQuery = `
   `
 
 class App extends BaseApp {
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {}
+  static async getInitialProps({ Component, ctx }: { Component: NextPage; ctx: NextPageContext }) {
+    let pageProps: { config?: any } = {}
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx)
     }
 
     // Add site config from sanity
-    return client.fetch(siteConfigQuery).then(config => {
+    return client.fetch(siteConfigQuery).then((config: any) => {
       if (!config) {
         return { pageProps }
       }

@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@iconscout/react-unicons": "0.0.1",
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^1.148.3",
     "@sanity/image-url": "^0.140.17",
@@ -15,11 +16,15 @@
     "lodash": "^4.17.15",
     "next": "^9.2.2",
     "next-seo": "^4.3.0",
+    "next-transpile-modules": "^3.0.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-syntax-highlighter": "^12.2.1"
   },
   "devDependencies": {
-    "sitemap": "^5.1.0"
+    "@types/node": "^13.7.4",
+    "@types/react": "^16.9.22",
+    "sitemap": "^5.1.0",
+    "typescript": "^3.8.2"
   }
 }

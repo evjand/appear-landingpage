@@ -2,13 +2,13 @@ import Head from 'next/head'
 import groq from 'groq'
 import client from '../client'
 import Layout from '../components/Layout'
-import HeroSection from '../components/HeroSection'
-import DemoSection from '../components/DemoSection'
-import GettingStartedSection from '../components/GettingStartedSection'
-import FeaturesSection from '../components/FeaturesSection'
-import UsersSection from '../components/UsersSection'
-import InvolvedSection from '../components/InvolvedSection'
-import FooterHeroSection from '../components/FooterHeroSection'
+import HeroSection from '../components/frontpageSections/HeroSection'
+import DemoSection from '../components/frontpageSections/DemoSection'
+import GettingStartedSection from '../components/frontpageSections/GettingStartedSection'
+import FeaturesSection from '../components/frontpageSections/FeaturesSection'
+import UsersSection from '../components/frontpageSections/UsersSection'
+import InvolvedSection from '../components/frontpageSections/InvolvedSection'
+import FooterHeroSection from '../components/frontpageSections/FooterHeroSection'
 
 const pageQuery = groq`
 *[_type == "route" && slug.current == $slug][0]{
@@ -29,7 +29,7 @@ const pageQuery = groq`
 }
 `
 
-const Home = ({ config }) => (
+const Home = ({ config }: { config: any }) => (
   <>
     <Head>
       <title>Appear</title>
@@ -47,14 +47,14 @@ const Home = ({ config }) => (
   </>
 )
 
-Home.getInitialProps = async ({ query }) => {
+Home.getInitialProps = async ({ query }: { query: any }) => {
   const { slug } = query
   if (!query) {
     console.error('no query')
     return
   }
   if (slug && slug !== '/') {
-    return client.fetch(pageQuery, { slug }).then(res => ({ ...res.page, slug }))
+    return client.fetch(pageQuery, { slug }).then((res: any) => ({ ...res.page, slug }))
   }
 
   // Frontpage
@@ -80,7 +80,7 @@ Home.getInitialProps = async ({ query }) => {
       }
     `
       )
-      .then(res => ({ ...res.frontpage, slug }))
+      .then((res: any) => ({ ...res.frontpage, slug }))
   }
 
   return null
