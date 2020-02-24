@@ -7,6 +7,8 @@ import DemoSection from '../components/DemoSection'
 import GettingStartedSection from '../components/GettingStartedSection'
 import FeaturesSection from '../components/FeaturesSection'
 import UsersSection from '../components/UsersSection'
+import InvolvedSection from '../components/InvolvedSection'
+import FooterHeroSection from '../components/FooterHeroSection'
 
 const pageQuery = groq`
 *[_type == "route" && slug.current == $slug][0]{
@@ -39,6 +41,8 @@ const Home = ({ config }) => (
       <GettingStartedSection />
       <FeaturesSection />
       <UsersSection />
+      <InvolvedSection />
+      <FooterHeroSection />
     </Layout>
   </>
 )

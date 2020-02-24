@@ -8,18 +8,18 @@
     "start": "next start"
   },
   "dependencies": {
-    "@sanity/block-content-to-react": "*",
-    "@sanity/client": "*",
-    "@sanity/image-url": "*",
-    "groq": "*",
-    "lodash": "*",
-    "next": "*",
-    "next-seo": "*",
-    "react": "*",
-    "react-dom": "*",
+    "@sanity/block-content-to-react": "^2.0.7",
+    "@sanity/client": "^1.148.3",
+    "@sanity/image-url": "^0.140.17",
+    "groq": "^1.148.1",
+    "lodash": "^4.17.15",
+    "next": "^9.2.2",
+    "next-seo": "^4.3.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-syntax-highlighter": "^12.2.1"
   },
   "devDependencies": {
-    "sitemap": "^2.1.0"
+    "sitemap": "^5.1.0"
   }
 }

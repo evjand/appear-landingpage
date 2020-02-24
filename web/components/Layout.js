@@ -3,7 +3,7 @@ import Head from 'next/head'
 import React from 'react'
 import Header from './Header'
 
-//import Footer from './Footer'
+import Footer from './Footer'
 
 function Layout(props) {
   const { config, children } = props
@@ -24,7 +24,7 @@ function Layout(props) {
       <div className="container">
         <Header title={title} navItems={mainNavigation} logo={logo} />
         <div className="content">{children}</div>
-        {/*<Footer navItems={footerNavigation} text={footerText} />*/}
+        <Footer navItems={footerNavigation} logo={logo} />
         {logoUrl && url && <LogoJsonLd url={url} logo={logoUrl} />}
       </div>
     </>

@@ -57,13 +57,13 @@ const FeaturesSection = () => {
         </div>
       </div>
       <style jsx>{`
-        h1 {
+        .titles h1 {
           margin: 0;
           font-size: 3rem;
           margin-bottom: 1rem;
         }
 
-        p {
+        .titles p {
           font-size: 1.25rem;
           margin: 0;
           font-weight: 400;
@@ -123,6 +123,7 @@ const FeaturesSection = () => {
         .text p {
           font-size: 1.5rem;
           line-height: 2.25rem;
+          margin: 0;
         }
       `}</style>
     </section>
