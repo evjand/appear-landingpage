@@ -1,6 +1,17 @@
 import Container from '../Container'
+import CallToAction from '../CallToAction'
+import { useContext } from 'react'
+import { colorContext } from '../../context/color'
+import useColor from '../../hooks/useColor'
+import Color from 'color'
+import useDarkMode from 'use-dark-mode'
 
 const HeroSection = () => {
+  const colors = useContext(colorContext)
+  const { value: darkMode } = useDarkMode()
+  const colorFunc = Color(colors.primaryLight)
+  const linkColor = useColor(colors.accentDefault)
+  const backgroundColor = useColor(colors.primaryLight)
   return (
     <section>
       <Container>
@@ -10,12 +21,12 @@ const HeroSection = () => {
           </h1>
           <p>Add the ability to dynamically change AR content in your app. It only takes minutes!</p>
           <div className="cta">
-            <a href="" className="cta-purple">
+            <CallToAction href="/" variantColor="accentDefault">
               Get started for free
-            </a>
-            <a href="" className="cta-ghost">
+            </CallToAction>
+            <CallToAction variant="ghost" href="/" variantColor="black">
               See an example
-            </a>
+            </CallToAction>
           </div>
           <img src="/AppearHeroImage.png" alt="" />
         </div>
@@ -27,7 +38,7 @@ const HeroSection = () => {
           }
 
           .hero {
-            background: #f2f8ff;
+            background: ${darkMode ? backgroundColor : colorFunc};
             width: calc(100% - 2rem);
             position: relative;
             padding: 4rem 6rem;
@@ -41,7 +52,7 @@ const HeroSection = () => {
             position: absolute;
             top: 2rem;
             left: 2rem;
-            border: 1px solid black;
+            border: 1px solid ${darkMode ? 'rgba(255,255,255,0.2)' : 'black'};
             z-index: -1;
           }
 
@@ -54,7 +65,7 @@ const HeroSection = () => {
           }
 
           h1 a {
-            color: #4527a0;
+            color: ${linkColor.saturate(0.5)};
           }
 
           p {
@@ -67,23 +78,10 @@ const HeroSection = () => {
             padding-top: 2rem;
             display: flex;
             align-items: center;
+            margin-left: -1rem;
           }
 
-          .cta a {
-            text-decoration: none;
-            border-radius: 4px;
-            padding: 1rem 2rem;
-          }
-
-          .cta-purple {
-            background: #4527a0;
-            color: white;
-          }
-
-          .cta-ghost {
-            background: transparent;
-            color: black;
-            border: 1px solid black;
+          .cta :global(a) {
             margin-left: 1rem;
           }
 

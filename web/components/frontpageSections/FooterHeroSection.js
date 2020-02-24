@@ -1,6 +1,13 @@
 import Container from '../Container'
+import { useContext } from 'react'
+import { colorContext } from '../../context/color'
+import useColor from '../../hooks/useColor'
+import useDarkMode from 'use-dark-mode'
 
 const FooterHeroSection = () => {
+  const { value: darkMode } = useDarkMode()
+  const colors = useContext(colorContext)
+  const backgroundColor = useColor(colors.primaryLight)
   return (
     <section>
       <Container>
@@ -17,7 +24,7 @@ const FooterHeroSection = () => {
       <style jsx>
         {`
           .hero {
-            background: #f2f8ff;
+            background: ${backgroundColor};
             width: calc(100% - 2rem);
             position: relative;
             padding: 4rem 6rem;
@@ -32,7 +39,7 @@ const FooterHeroSection = () => {
             position: absolute;
             top: 2rem;
             left: 2rem;
-            border: 1px solid black;
+            border: 1px solid ${darkMode ? 'rgba(255,255,255,0.2)' : 'black'};
             z-index: -1;
           }
 

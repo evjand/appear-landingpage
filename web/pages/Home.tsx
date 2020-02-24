@@ -9,6 +9,7 @@ import FeaturesSection from '../components/frontpageSections/FeaturesSection'
 import UsersSection from '../components/frontpageSections/UsersSection'
 import InvolvedSection from '../components/frontpageSections/InvolvedSection'
 import FooterHeroSection from '../components/frontpageSections/FooterHeroSection'
+import { useState, useEffect, useLayoutEffect } from 'react'
 
 const pageQuery = groq`
 *[_type == "route" && slug.current == $slug][0]{
@@ -29,23 +30,33 @@ const pageQuery = groq`
 }
 `
 
-const Home = ({ config }: { config: any }) => (
-  <>
-    <Head>
-      <title>Appear</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <Layout config={config}>
-      <HeroSection />
-      <DemoSection />
-      <GettingStartedSection />
-      <FeaturesSection />
-      <UsersSection />
-      <InvolvedSection />
-      <FooterHeroSection />
-    </Layout>
-  </>
-)
+const Home = ({ config }: { config: any }) => {
+  const [mounted, setMounted] = useState(false)
+
+  useLayoutEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted && process.browser) return null
+
+  return (
+    <div style={{ opacity: mounted ? 1 : 1, transition: 'opacity 1s ease' }}>
+      <Head>
+        <title>Appear</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Layout config={config}>
+        <HeroSection />
+        <DemoSection />
+        <GettingStartedSection />
+        <FeaturesSection />
+        <UsersSection />
+        <InvolvedSection />
+        <FooterHeroSection />
+      </Layout>
+    </div>
+  )
+}
 
 Home.getInitialProps = async ({ query }: { query: any }) => {
   const { slug } = query

@@ -1,6 +1,11 @@
 import Container from '../Container'
+import useColor from '../../hooks/useColor'
+import { useContext } from 'react'
+import { colorContext } from '../../context/color'
 
 const DemoSection = () => {
+  const { primaryLight } = useContext(colorContext)
+  const circleColor = useColor(primaryLight)
   return (
     <Container>
       <div className="demo">
@@ -97,7 +102,7 @@ const DemoSection = () => {
             top: -3rem;
             left: -6rem;
             border-radius: 50%;
-            background: #f2f8ff;
+            background: ${circleColor};
             z-index: -1;
           }
 

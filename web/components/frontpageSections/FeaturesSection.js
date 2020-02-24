@@ -1,6 +1,11 @@
 import Container from '../Container'
+import { useContext } from 'react'
+import { colorContext } from '../../context/color'
+import useColor from '../../hooks/useColor'
 
 const FeaturesSection = () => {
+  const { primaryLight } = useContext(colorContext)
+  const featureColor = useColor(primaryLight)
   return (
     <section>
       <Container>
@@ -85,7 +90,7 @@ const FeaturesSection = () => {
         }
 
         .feature:nth-of-type(odd) {
-          background: #f2f8ff;
+          background: ${featureColor};
         }
 
         .feature:nth-of-type(even) .grid .text {

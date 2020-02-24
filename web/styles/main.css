@@ -14,3 +14,12 @@ h1,
 h2 {
   font-family: 'HKGroteskBold', sans-serif;
 }
+
+body.light-mode {
+  background-color: white;
+  color: black;
+}
+body.dark-mode {
+  background-color: black;
+  color: white;
+}

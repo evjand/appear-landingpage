@@ -62,6 +62,7 @@ const InvolvedSection = () => {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          color: black;
         }
 
         .titles h1 {

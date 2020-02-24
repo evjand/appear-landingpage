@@ -144,8 +144,12 @@ const Footer = props => {
         }
 
         a {
-          color: black;
+          color: inherit;
           text-decoration: none;
+        }
+
+        a:hover  {
+          text-decoration: underline;
         }
 
         i {

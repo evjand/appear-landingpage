@@ -1,11 +1,12 @@
 import SyntaxHighlighter from 'react-syntax-highlighter'
-import { vs } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+import { githubGist, atomOneDarkReasonable } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+import useColor from '../../hooks/useColor'
+import useDarkMode from 'use-dark-mode'
 
 const codeStyle = {
   marginBottom: '2rem',
   border: 'none',
   outline: 'none',
-  background: '#f9f9f9',
   padding: '1rem 2rem',
   borderRadius: '4px',
   fontFamily: "'Fira Code', monospace",
@@ -17,6 +18,10 @@ const line = `let vc = RealityFileViewController()
 present(vc, animated: true, completion: nil)`
 
 const GettingStartedSection = () => {
+  const bgColor = useColor('#f9f9f9')
+  const style = { ...codeStyle, background: bgColor }
+  const { value: darkMode } = useDarkMode()
+  const hlStyle = darkMode ? atomOneDarkReasonable : githubGist
   return (
     <section>
       <div className="container">
@@ -26,15 +31,15 @@ const GettingStartedSection = () => {
         </div>
         <div className="code">
           <label>In the Podfile</label>
-          <SyntaxHighlighter customStyle={codeStyle} language="ruby" style={vs}>
+          <SyntaxHighlighter customStyle={style} language="ruby" style={hlStyle}>
             pod 'Appear'
           </SyntaxHighlighter>
           <label>In AppDelegate.swift</label>
-          <SyntaxHighlighter customStyle={codeStyle} language="swift" style={vs}>
+          <SyntaxHighlighter customStyle={style} language="swift" style={hlStyle}>
             AppearApp.configure()
           </SyntaxHighlighter>
           <label>In any ViewController</label>
-          <SyntaxHighlighter customStyle={codeStyle} wrapLines language="swift" style={vs}>
+          <SyntaxHighlighter customStyle={style} wrapLines language="swift" style={hlStyle}>
             {line}
           </SyntaxHighlighter>
         </div>
