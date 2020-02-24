@@ -110,10 +110,6 @@ const InvolvedSection = () => {
           padding: 1rem 2rem;
         }
 
-        .platforms {
-          padding: 3rem 0;
-        }
-
         .platform {
           width: 100%;
           padding: 7rem 0;
