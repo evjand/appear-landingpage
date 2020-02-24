@@ -22,7 +22,7 @@ interface ICallToAction {
    * "small" | "large"
    */
   size: 'small' | 'large'
-  color: string
+  desaturate: boolean
 }
 
 const CallToAction: FC<ICallToAction> = ({
@@ -30,11 +30,13 @@ const CallToAction: FC<ICallToAction> = ({
   variant = 'solid',
   variantColor = 'primaryDefault',
   href,
-  size = 'large'
+  size = 'large',
+  desaturate = true
 }) => {
   const { value: darkMode } = useDarkMode()
   const colors = useContext(colorContext)
-  const colorFunc = useColor(colors[variantColor], true)
+  const colorString = colors[variantColor] || variantColor
+  const colorFunc = useColor(colorString, desaturate)
   return (
     <a href={href} className={`cta ${variant}`}>
       {children}

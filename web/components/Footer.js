@@ -196,7 +196,7 @@ const Footer = props => {
         }
 
         .bottom a {
-          font-weight: 500;
+          font-weight: 600;
         }
       `}</style>
     </footer>
