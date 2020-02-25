@@ -9,7 +9,7 @@ import FeaturesSection from '../components/frontpageSections/FeaturesSection'
 import UsersSection from '../components/frontpageSections/UsersSection'
 import InvolvedSection from '../components/frontpageSections/InvolvedSection'
 import FooterHeroSection from '../components/frontpageSections/FooterHeroSection'
-import { useState, useEffect, useLayoutEffect } from 'react'
+import { useState, useLayoutEffect } from 'react'
 
 const pageQuery = groq`
 *[_type == "route" && slug.current == $slug][0]{

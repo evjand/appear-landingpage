@@ -21,7 +21,7 @@ const HeroSection = () => {
           </h1>
           <p>Add the ability to dynamically change AR content in your app. It only takes minutes!</p>
           <div className="cta">
-            <CallToAction href="/" variantColor="#4527A0" desaturate={false}>
+            <CallToAction href="https://console.appear.media/join" variantColor="#4527A0" desaturate={false}>
               Get started for free
             </CallToAction>
             <CallToAction variant="ghost" href="/" variantColor="black">
