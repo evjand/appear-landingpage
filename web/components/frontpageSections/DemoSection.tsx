@@ -1,10 +1,10 @@
 import Container from '../Container'
 import useColor from '../../hooks/useColor'
 import { useContext } from 'react'
-import { colorContext } from '../../context/color'
+import { ColorContext } from '../../context/color'
 
 const DemoSection = () => {
-  const { primaryLight } = useContext(colorContext)
+  const { primaryLight } = useContext(ColorContext)
   const circleColor = useColor(primaryLight)
   return (
     <Container>

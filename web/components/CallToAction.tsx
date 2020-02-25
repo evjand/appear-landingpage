@@ -1,17 +1,26 @@
-import { FC, useContext } from 'react'
-import Color from 'color'
+import { FC, useContext, CSSProperties } from 'react'
 import useColor from '../hooks/useColor'
-import { colorContext } from '../context/color'
+import { variantColors, ColorContext } from '../context/color'
 import useDarkMode from 'use-dark-mode'
+import classnames from 'classnames'
+import styles from './CallToAction.module.css'
 
 type Variants = 'solid' | 'ghost'
 
 interface ICallToAction {
   /**
-   * The style of the button
+   * The style of the button.
+   * @example
+   * solid | ghost
+   * @default ghost
    */
-  variant: Variants
-  variantColor: string
+  variant?: Variants
+  /**
+   * The style of the button.
+   * @param {variantColors}
+   * @default primaryDefault
+   */
+  variantColor?: string
   /**
    * The URL that should be opened when you click the button
    */
@@ -19,10 +28,15 @@ interface ICallToAction {
   /**
    * The size of the button
    * @example
-   * "small" | "large"
+   * small | large
+   * @default large
    */
-  size: 'small' | 'large'
-  desaturate: boolean
+  size?: 'small' | 'large'
+  /**
+   * Should the button be desaturated in dark mode
+   * @default true
+   */
+  desaturate?: boolean
 }
 
 const CallToAction: FC<ICallToAction> = ({
@@ -34,38 +48,21 @@ const CallToAction: FC<ICallToAction> = ({
   desaturate = true
 }) => {
   const { value: darkMode } = useDarkMode()
-  const colors = useContext(colorContext)
+  const colors = useContext(ColorContext)
   const colorString = colors[variantColor] || variantColor
   const colorFunc = useColor(colorString, desaturate)
+
+  const cssVars = {
+    ['--solid-background']: colorFunc,
+    ['--solid-hover-background']: colorFunc.darken(0.2),
+    ['--solid-color']: colorFunc.isLight() ? 'black' : 'white',
+    ['--ghost-color']: darkMode ? colorFunc.negate() : colorFunc,
+    ['--ghost-hover-background']: darkMode ? colorFunc.negate().alpha(0.1) : colorFunc.alpha(0.1)
+  } as CSSProperties
+
   return (
-    <a href={href} className={`cta ${variant}`}>
+    <a href={href} className={classnames(styles.cta, styles[variant], styles[size])} style={cssVars}>
       {children}
-      <style jsx>{`
-        .cta {
-          text-decoration: none;
-          border-radius: 4px;
-          padding: ${size === 'large' ? ' 1rem 2rem' : ' 0.5rem 1.5rem'};
-        }
-
-        .solid {
-          background: ${colorFunc};
-          color: ${colorFunc.isLight() ? 'black' : 'white'};
-        }
-
-        .solid:hover {
-          background: ${colorFunc.darken(0.2)};
-        }
-
-        .ghost {
-          background: rgba(0, 0, 0, 0);
-          color: ${darkMode ? colorFunc.negate() : colorFunc};
-          border: 1px solid ${darkMode ? colorFunc.negate() : colorFunc};
-        }
-
-        .ghost:hover {
-          background: ${darkMode ? colorFunc.negate().alpha(0.1) : colorFunc.alpha(0.1)};
-        }
-      `}</style>
     </a>
   )
 }

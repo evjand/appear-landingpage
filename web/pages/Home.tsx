@@ -9,7 +9,8 @@ import FeaturesSection from '../components/frontpageSections/FeaturesSection'
 import UsersSection from '../components/frontpageSections/UsersSection'
 import InvolvedSection from '../components/frontpageSections/InvolvedSection'
 import FooterHeroSection from '../components/frontpageSections/FooterHeroSection'
-import { useState, useLayoutEffect } from 'react'
+import { useState, useEffect } from 'react'
+import { InitialLoadContext } from '../context/initialLoad'
 
 const pageQuery = groq`
 *[_type == "route" && slug.current == $slug][0]{
@@ -32,29 +33,38 @@ const pageQuery = groq`
 
 const Home = ({ config }: { config: any }) => {
   const [mounted, setMounted] = useState(false)
+  const [initialLoad, setInitialLoad] = useState(false)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setMounted(true)
+
+    const timeout = setTimeout(() => {
+      setInitialLoad(true)
+    }, 1000)
+
+    return () => clearTimeout(timeout)
   }, [])
 
   if (!mounted && process.browser) return null
 
   return (
-    <div style={{ opacity: mounted ? 1 : 1, transition: 'opacity 1s ease' }}>
+    <>
       <Head>
         <title>Appear</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout config={config}>
-        <HeroSection />
-        <DemoSection />
-        <GettingStartedSection />
-        <FeaturesSection />
-        <UsersSection />
-        <InvolvedSection />
-        <FooterHeroSection />
-      </Layout>
-    </div>
+      <InitialLoadContext.Provider value={initialLoad}>
+        <Layout config={config}>
+          <HeroSection />
+          <DemoSection />
+          <GettingStartedSection />
+          <FeaturesSection />
+          <UsersSection />
+          <InvolvedSection />
+          <FooterHeroSection />
+        </Layout>
+      </InitialLoadContext.Provider>
+    </>
   )
 }
 

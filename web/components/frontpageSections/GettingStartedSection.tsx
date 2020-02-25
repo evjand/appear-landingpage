@@ -1,5 +1,5 @@
 import SyntaxHighlighter from 'react-syntax-highlighter'
-import { githubGist, atomOneDarkReasonable } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+import { githubGist, atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 import useColor from '../../hooks/useColor'
 import useDarkMode from 'use-dark-mode'
 
@@ -21,7 +21,7 @@ const GettingStartedSection = () => {
   const bgColor = useColor('#f9f9f9')
   const style = { ...codeStyle, background: bgColor }
   const { value: darkMode } = useDarkMode()
-  const hlStyle = darkMode ? atomOneDarkReasonable : githubGist
+  const hlStyle = darkMode ? atomOneDark : githubGist
   return (
     <section>
       <div className="container">

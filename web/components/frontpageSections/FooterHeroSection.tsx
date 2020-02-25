@@ -1,12 +1,12 @@
 import Container from '../Container'
 import { useContext } from 'react'
-import { colorContext } from '../../context/color'
+import { ColorContext } from '../../context/color'
 import useColor from '../../hooks/useColor'
 import useDarkMode from 'use-dark-mode'
 
 const FooterHeroSection = () => {
   const { value: darkMode } = useDarkMode()
-  const colors = useContext(colorContext)
+  const colors = useContext(ColorContext)
   const backgroundColor = useColor(colors.primaryLight)
   return (
     <section>

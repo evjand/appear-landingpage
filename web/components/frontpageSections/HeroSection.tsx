@@ -1,13 +1,13 @@
 import Container from '../Container'
 import CallToAction from '../CallToAction'
 import { useContext } from 'react'
-import { colorContext } from '../../context/color'
+import { ColorContext } from '../../context/color'
 import useColor from '../../hooks/useColor'
 import Color from 'color'
 import useDarkMode from 'use-dark-mode'
 
 const HeroSection = () => {
-  const colors = useContext(colorContext)
+  const colors = useContext(ColorContext)
   const { value: darkMode } = useDarkMode()
   const colorFunc = Color(colors.primaryLight)
   const linkColor = useColor(colors.accentDefault)
@@ -27,6 +27,7 @@ const HeroSection = () => {
             <CallToAction variant="ghost" href="/" variantColor="black">
               See an example
             </CallToAction>
+            <CallToAction variantColor
           </div>
           <img src="/AppearHeroImage.png" alt="" />
         </div>

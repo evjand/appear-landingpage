@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import useDarkMode from 'use-dark-mode'
-import React from 'react'
+import React, { FC } from 'react'
 import Container from './Container'
 import ArrowIcon from '@iconscout/react-unicons/icons/uil-arrow-right'
 import CallToAction from './CallToAction'
@@ -9,8 +9,7 @@ import CallToAction from './CallToAction'
 import SunIcon from '@iconscout/react-unicons/icons/uil-sun'
 import MoonIcon from '@iconscout/react-unicons/icons/uil-moon'
 
-const Header = props => {
-  const { title = 'Missing title', navItems, logo } = props
+const Header: FC<{ navItems: Array<any>; logo: any }> = ({ navItems, logo }) => {
   const router = useRouter()
   const { value, toggle } = useDarkMode(false)
   return (
@@ -25,7 +24,7 @@ const Header = props => {
           }}
           as="/"
         >
-          <a title={title}>
+          <a>
             <img src={logo.asset.url} alt={logo.title} />
           </a>
         </Link>
@@ -50,7 +49,7 @@ const Header = props => {
                 const { slug, title, _id } = item
                 const isActive = router.pathname === '/Home' && router.query.slug === slug.current
                 return (
-                  <li key={_id} className={styles.navItem}>
+                  <li key={_id}>
                     <Link
                       href={{
                         pathname: '/Home',

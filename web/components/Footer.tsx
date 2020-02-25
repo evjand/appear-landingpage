@@ -1,13 +1,12 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { FC } from 'react'
 import Container from './Container'
 
 import PinIcon from '@iconscout/react-unicons/icons/uil-map-marker-alt'
 import EnvelopeIcon from '@iconscout/react-unicons/icons/uil-envelope-alt'
 
-const Footer = props => {
-  const { title = 'Missing title', navItems, logo } = props
+const Footer: FC<{ navItems: Array<any>; logo: any }> = ({ navItems, logo }) => {
   const router = useRouter()
   return (
     <footer>
@@ -22,7 +21,7 @@ const Footer = props => {
             }}
             as="/"
           >
-            <a title={title}>
+            <a>
               <img src={logo.asset.url} alt={logo.title} />
             </a>
           </Link>

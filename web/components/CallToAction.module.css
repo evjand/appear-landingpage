@@ -1,0 +1,50 @@
+/*.cta {
+  text-decoration: none;
+  border-radius: 4px;
+  padding: ${size === 'large' ? ' 1rem 2rem' : ' 0.5rem 1.5rem'};
+}
+
+.solid {
+  background: ${colorFunc};
+  color: ${colorFunc.isLight() ? 'black' : 'white'};
+}
+
+.solid:hover {
+  background: ${colorFunc.darken(0.2)};
+}
+
+.ghost {
+  background: rgba(0, 0, 0, 0);
+  color: ${darkMode ? colorFunc.negate() : colorFunc};
+  border: 1px solid ${darkMode ? colorFunc.negate() : colorFunc};
+}
+
+.ghost:hover {
+  background: ${darkMode ? colorFunc.negate().alpha(0.1) : colorFunc.alpha(0.1)};
+}*/
+
+.cta {
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 1rem 2rem;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.solid {
+  background: var(--solid-background, black);
+  color: var(--solid-color, white);
+}
+
+.solid:hover {
+  background: var(--solid-hover-background, black);
+}
+
+.ghost {
+  background: rgba(0, 0, 0, 0);
+  color: var(--ghost-color, black);
+  border: 1px solid var(--ghost-color, black);
+}
+
+.ghost:hover {
+  background: var(--ghost-hover-background, rgba(0, 0, 0, 0.1));
+}

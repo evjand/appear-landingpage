@@ -1,6 +1,7 @@
 import React from 'react'
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
 import client from '../client'
+import { colors, ColorContext } from '../context/color'
 
 export default class MyDocument extends Document<{ lang: string }> {
   static async getInitialProps(ctx: DocumentContext) {
@@ -20,8 +21,10 @@ export default class MyDocument extends Document<{ lang: string }> {
           <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/brand.min.css" />
         </Head>
         <body>
-          <Main />
-          <NextScript />
+          <ColorContext.Provider value={colors}>
+            <Main />
+            <NextScript />
+          </ColorContext.Provider>
         </body>
       </Html>
     )

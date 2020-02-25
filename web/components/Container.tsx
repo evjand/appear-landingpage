@@ -1,4 +1,6 @@
-const Container = ({ children, ...props }) => {
+import { FC } from 'react'
+
+const Container: FC<{ [x: string]: any }> = ({ children, ...props }) => {
   return (
     <div {...props}>
       {children}

@@ -1,6 +1,17 @@
 import { createContext } from 'react'
 
-const colors: { [key: string]: string } = {
+export enum variantColors {
+  primaryDefault,
+  primaryLight,
+  primaryDark,
+  accentDefault,
+  accentLight,
+  accentDark,
+  black,
+  white
+}
+
+export const colors: { [key: string]: string } = {
   primaryDefault: '#B4D4F9',
   primaryLight: '#F2F8FF',
   primaryDark: '#84B8F5',
@@ -11,4 +22,4 @@ const colors: { [key: string]: string } = {
   white: '#FFFFFF'
 }
 
-export const colorContext = createContext(colors)
+export const ColorContext = createContext(colors)
