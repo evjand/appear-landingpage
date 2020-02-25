@@ -26,7 +26,7 @@
 .cta {
   text-decoration: none;
   border-radius: 4px;
-  padding: 1rem 2rem;
+  padding: var(--padding, 1rem 2rem);
   transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

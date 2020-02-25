@@ -53,6 +53,7 @@ const CallToAction: FC<ICallToAction> = ({
   const colorFunc = useColor(colorString, desaturate)
 
   const cssVars = {
+    ['--padding']: size === 'small' ? '0.5rem 1.5rem' : '1rem 2rem',
     ['--solid-background']: colorFunc,
     ['--solid-hover-background']: colorFunc.darken(0.2),
     ['--solid-color']: colorFunc.isLight() ? 'black' : 'white',
