@@ -1,3 +1,24 @@
+import React from 'react'
+
+function toPlainText(blocks = []) {
+  return (
+    blocks
+      // loop through each block
+      .map(block => {
+        // if it's not a text block with children,
+        // return nothing
+        if (block._type !== 'block' || !block.children) {
+          return ''
+        }
+        // loop through the children spans, and join the
+        // text strings
+        return block.children.map(child => child.text).join('')
+      })
+      // join the parapgraphs leaving split by two linebreaks
+      .join('\n\n')
+  )
+}
+
 export default {
   type: 'object',
   name: 'hero',
@@ -5,21 +26,18 @@ export default {
   fields: [
     {
       name: 'heading',
-      type: 'string',
       title: 'Heading',
+      type: 'simplePortableText'
     },
     {
       name: 'tagline',
       type: 'simplePortableText',
-      title: 'Tagline',
+      title: 'Tagline'
     },
     {
-      name: 'backgroundImage',
+      name: 'image',
       type: 'image',
-      title: 'Background image',
-      options: {
-        hotspot: true,
-      },
+      title: 'Image'
     },
     {
       name: 'ctas',
@@ -28,22 +46,22 @@ export default {
       of: [
         {
           title: 'Call to action',
-          type: 'cta',
-        },
-      ],
-    },
+          type: 'cta'
+        }
+      ]
+    }
   ],
   preview: {
     select: {
       title: 'heading',
-      media: 'backgroundImage',
+      media: 'backgroundImage'
     },
     prepare({ title, media }) {
       return {
-        title,
+        title: toPlainText(title),
         subtitle: 'Hero section',
-        media,
-      };
-    },
-  },
-};
+        media
+      }
+    }
+  }
+}

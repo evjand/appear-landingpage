@@ -11,8 +11,9 @@ import InvolvedSection from '../components/frontpageSections/InvolvedSection'
 import FooterHeroSection from '../components/frontpageSections/FooterHeroSection'
 import { useState, useEffect } from 'react'
 import { InitialLoadContext } from '../context/initialLoad'
+import { NextPage } from 'next'
 
-const pageQuery = groq`
+/*const pageQuery = groq`
 *[_type == "route" && slug.current == $slug][0]{
   page-> {
     ...,
@@ -29,11 +30,13 @@ const pageQuery = groq`
     }
   }
 }
-`
+`*/
 
-const Home = ({ config }: { config: any }) => {
+const Home: NextPage<{ config: any; content: any }> = ({ config, content }) => {
   const [mounted, setMounted] = useState(false)
   const [initialLoad, setInitialLoad] = useState(false)
+
+  const hero = content.find((c: any) => c._type === 'hero')
 
   useEffect(() => {
     setMounted(true)
@@ -55,7 +58,7 @@ const Home = ({ config }: { config: any }) => {
       </Head>
       <InitialLoadContext.Provider value={initialLoad}>
         <Layout config={config}>
-          <HeroSection />
+          <HeroSection {...hero} />
           <DemoSection />
           <GettingStartedSection />
           <FeaturesSection />
@@ -74,9 +77,9 @@ Home.getInitialProps = async ({ query }: { query: any }) => {
     console.error('no query')
     return
   }
-  if (slug && slug !== '/') {
+  /*if (slug && slug !== '/') {
     return client.fetch(pageQuery, { slug }).then((res: any) => ({ ...res.page, slug }))
-  }
+  }*/
 
   // Frontpage
   if (slug && slug === '/') {
@@ -88,6 +91,10 @@ Home.getInitialProps = async ({ query }: { query: any }) => {
           ...,
           content[] {
             ...,
+            image {
+              ...,
+              asset->{extension, url}
+            },
             cta {
               ...,
               route->

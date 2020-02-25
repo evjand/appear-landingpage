@@ -2,22 +2,18 @@ export default {
   title: 'Call to action',
   name: 'cta',
   type: 'object',
-  validation: Rule =>
-    Rule.custom(
-      (fields = {}) =>
-        !fields.route || !fields.link || 'Only one link type is allowed'
-    ),
+  validation: Rule => Rule.custom((fields = {}) => !fields.route || !fields.link || 'Only one link type is allowed'),
   fieldsets: [
     {
       title: 'Link',
-      name: 'link',
-    },
+      name: 'link'
+    }
   ],
   fields: [
     {
       title: 'Title',
       name: 'title',
-      type: 'string',
+      type: 'string'
     },
     {
       title: 'Internal link',
@@ -25,32 +21,45 @@ export default {
       name: 'route',
       type: 'reference',
       to: [{ type: 'route' }],
-      fieldset: 'link',
+      fieldset: 'link'
     },
     {
       title: 'External link',
       name: 'link',
       type: 'url',
-      fieldset: 'link',
+      fieldset: 'link'
     },
+    {
+      title: 'Variant',
+      name: 'variant',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Solid', value: 'solid' },
+          { title: 'Ghost', value: 'ghost' }
+        ],
+        layout: 'radio'
+      }
+    },
+    {
+      name: 'variantColor',
+      type: 'color',
+      title: 'Color'
+    }
   ],
   preview: {
     select: {
       title: 'title',
       routeTitle: 'route.title',
       slug: 'route.slug.current',
-      link: 'link',
+      link: 'link'
     },
     prepare({ title, routeTitle = '', slug, link }) {
-      const subtitleExtra = slug
-        ? `Slug:/${slug}/`
-        : link
-        ? `External link: ${link}`
-        : 'Not set';
+      const subtitleExtra = slug ? `Slug:/${slug}/` : link ? `External link: ${link}` : 'Not set'
       return {
         title: `${title}`,
-        subtitle: `${routeTitle} ${subtitleExtra}`,
-      };
-    },
-  },
-};
+        subtitle: `${routeTitle} ${subtitleExtra}`
+      }
+    }
+  }
+}
