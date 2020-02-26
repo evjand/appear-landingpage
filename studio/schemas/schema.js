@@ -17,9 +17,13 @@ import internalLink from './objects/internalLink'
 import link from './objects/link'
 import portableText from './objects/portableText'
 import simplePortableText from './objects/simplePortableText'
+import feature from './objects/feature'
 
 // Landing page sections
-import heroSection from './objects/heroSection'
+import heroSection from './sections/heroSection'
+import demoSection from './sections/demoSection'
+import gettingStartedSection from './sections/gettingStartedSection'
+import featuresSection from './sections/featuresSection'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -31,13 +35,17 @@ export default createSchema({
     cta,
     embedHTML,
     figure,
-    heroSection,
     internalLink,
     link,
     page,
     portableText,
     route,
     simplePortableText,
-    siteConfig
+    feature,
+    siteConfig,
+    heroSection,
+    demoSection,
+    gettingStartedSection,
+    featuresSection
   ])
 })

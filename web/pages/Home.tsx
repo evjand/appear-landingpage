@@ -1,18 +1,17 @@
-import Head from 'next/head'
-import groq from 'groq'
-import client from '../client'
-import Layout from '../components/Layout'
-import HeroSection from '../components/frontpageSections/HeroSection'
-import DemoSection from '../components/frontpageSections/DemoSection'
-import GettingStartedSection from '../components/frontpageSections/GettingStartedSection'
-import FeaturesSection from '../components/frontpageSections/FeaturesSection'
-import UsersSection from '../components/frontpageSections/UsersSection'
-import InvolvedSection from '../components/frontpageSections/InvolvedSection'
-import FooterHeroSection from '../components/frontpageSections/FooterHeroSection'
-import { useState, useEffect } from 'react'
-import { InitialLoadContext } from '../context/initialLoad'
 import { NextPage } from 'next'
-
+import Head from 'next/head'
+import { useEffect, useState } from 'react'
+import client from '../client'
+import DemoSection from '../components/frontpageSections/DemoSection'
+import FeaturesSection from '../components/frontpageSections/FeaturesSection'
+import FooterHeroSection from '../components/frontpageSections/FooterHeroSection'
+import GettingStartedSection from '../components/frontpageSections/GettingStartedSection'
+import HeroSection from '../components/frontpageSections/HeroSection'
+import InvolvedSection from '../components/frontpageSections/InvolvedSection'
+import UsersSection from '../components/frontpageSections/UsersSection'
+import Layout from '../components/Layout'
+import { InitialLoadContext } from '../context/initialLoad'
+import frontpageQuery from '../queries/frontpage.js'
 /*const pageQuery = groq`
 *[_type == "route" && slug.current == $slug][0]{
   page-> {
@@ -37,6 +36,9 @@ const Home: NextPage<{ config: any; content: any }> = ({ config, content }) => {
   const [initialLoad, setInitialLoad] = useState(false)
 
   const hero = content.find((c: any) => c._type === 'heroSection')
+  const demo = content.find((c: any) => c._type === 'demoSection')
+  const gettingStarted = content.find((c: any) => c._type === 'gettingStartedSection')
+  const features = content.find((c: any) => c._type === 'featuresSection')
 
   useEffect(() => {
     setMounted(true)
@@ -59,9 +61,9 @@ const Home: NextPage<{ config: any; content: any }> = ({ config, content }) => {
       <InitialLoadContext.Provider value={initialLoad}>
         <Layout config={config}>
           <HeroSection {...hero} />
-          <DemoSection />
-          <GettingStartedSection />
-          <FeaturesSection />
+          <DemoSection {...demo} />
+          <GettingStartedSection {...gettingStarted} />
+          <FeaturesSection {...features} />
           <UsersSection />
           <InvolvedSection />
           <FooterHeroSection />
@@ -83,32 +85,7 @@ Home.getInitialProps = async ({ query }: { query: any }) => {
 
   // Frontpage
   if (slug && slug === '/') {
-    return client
-      .fetch(
-        groq`
-      *[_id == "global-config"][0]{
-        frontpage -> {
-          ...,
-          content[] {
-            ...,
-            image {
-              ...,
-              asset->{extension, url}
-            },
-            cta {
-              ...,
-              route->
-            },
-            ctas[] {
-              ...,
-              route->
-            }
-          }
-        }
-      }
-    `
-      )
-      .then((res: any) => ({ ...res.frontpage, slug }))
+    return client.fetch(frontpageQuery).then((res: any) => ({ ...res.frontpage, slug }))
   }
 
   return null
