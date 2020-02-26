@@ -1,0 +1,67 @@
+.section {
+  padding-bottom: 256px;
+}
+
+.hero {
+  background: var(--background-color, 'white');
+  width: calc(100% - 2rem);
+  position: relative;
+  padding: 4rem 6rem;
+}
+
+.hero::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  border: 1px solid;
+  z-index: -1;
+}
+
+:global(.light-mode) .hero::before {
+  border-color: 'black';
+}
+
+:global(.dark-mode) .hero::before {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 4rem;
+  line-height: 4.5rem;
+  max-width: 60%;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 a {
+  color: var(--link-color, 'white');
+}
+
+.hero p {
+  font-size: 1.25rem;
+  max-width: 55%;
+  margin: 0;
+}
+
+.cta {
+  padding-top: 2rem;
+  display: flex;
+  align-items: center;
+  margin-left: -1rem;
+}
+
+.cta a {
+  margin-left: 1rem;
+}
+
+.hero img {
+  width: 50%;
+  height: auto;
+  position: absolute;
+  top: 3rem;
+  right: 2rem;
+}

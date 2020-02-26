@@ -33,10 +33,12 @@
 .solid {
   background: var(--solid-background, black);
   color: var(--solid-color, white);
+  border: 1px solid var(--solid-background, black);
 }
 
 .solid:hover {
   background: var(--solid-hover-background, black);
+  border-color: var(--solid-hover-background, black);
 }
 
 .ghost {

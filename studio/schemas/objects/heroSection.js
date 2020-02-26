@@ -21,7 +21,7 @@ function toPlainText(blocks = []) {
 
 export default {
   type: 'object',
-  name: 'hero',
+  name: 'heroSection',
   title: 'Hero',
   fields: [
     {

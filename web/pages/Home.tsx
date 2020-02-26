@@ -36,7 +36,7 @@ const Home: NextPage<{ config: any; content: any }> = ({ config, content }) => {
   const [mounted, setMounted] = useState(false)
   const [initialLoad, setInitialLoad] = useState(false)
 
-  const hero = content.find((c: any) => c._type === 'hero')
+  const hero = content.find((c: any) => c._type === 'heroSection')
 
   useEffect(() => {
     setMounted(true)
