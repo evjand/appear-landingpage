@@ -12,6 +12,12 @@ const query = `
       title,
       _createdAt,
       _updatedAt
+  },
+  subpage->{
+    _id,
+    title,
+    _createdAt,
+    _updatedAt
   }}
 }
 `
@@ -20,6 +26,7 @@ const reduceRoutes = (obj, route) => {
   const { _createdAt, _updatedAt } = page
   const { includeInSitemap, disallowRobot } = route
   const path = route['slug']['current'] === '/' ? '/' : `/${route['slug']['current']}`
+  const pagePath = route['slug']['current'] === '/' ? '/Home' : '/Page'
   obj[path] = {
     query: {
       slug: slug.current
@@ -28,7 +35,7 @@ const reduceRoutes = (obj, route) => {
     disallowRobot,
     _createdAt,
     _updatedAt,
-    page: '/Home'
+    page: pagePath
   }
   return obj
 }

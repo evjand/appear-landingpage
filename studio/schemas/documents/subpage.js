@@ -1,7 +1,7 @@
 export default {
-  name: 'page',
+  name: 'subpage',
   type: 'document',
-  title: 'Page',
+  title: 'Subpage',
   fieldsets: [
     {
       title: 'SEO & metadata',
@@ -18,13 +18,7 @@ export default {
       name: 'content',
       type: 'array',
       title: 'Page sections',
-      of: [
-        { type: 'heroSection' },
-        { type: 'demoSection' },
-        { type: 'gettingStartedSection' },
-        { type: 'featuresSection' },
-        { type: 'clientsSection' }
-      ]
+      of: [{ type: 'textSection' }, { type: 'imageSection' }]
     },
     {
       name: 'description',

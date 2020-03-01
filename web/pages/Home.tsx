@@ -8,28 +8,11 @@ import FooterHeroSection from '../components/frontpageSections/FooterHeroSection
 import GettingStartedSection from '../components/frontpageSections/GettingStartedSection'
 import HeroSection from '../components/frontpageSections/HeroSection'
 import InvolvedSection from '../components/frontpageSections/InvolvedSection'
-import UsersSection from '../components/frontpageSections/UsersSection'
+import ClientsSection from '../components/frontpageSections/ClientsSection'
 import Layout from '../components/Layout'
 import { InitialLoadContext } from '../context/initialLoad'
-import frontpageQuery from '../queries/frontpage.js'
-/*const pageQuery = groq`
-*[_type == "route" && slug.current == $slug][0]{
-  page-> {
-    ...,
-    content[] {
-      ...,
-      cta {
-        ...,
-        route->
-      },
-      ctas[] {
-        ...,
-        route->
-      }
-    }
-  }
-}
-`*/
+import frontpageQuery from '../queries/frontpage'
+import subpageQuery from '../queries/subpage'
 
 const Home: NextPage<{ config: any; content: any }> = ({ config, content }) => {
   const [mounted, setMounted] = useState(false)
@@ -39,6 +22,7 @@ const Home: NextPage<{ config: any; content: any }> = ({ config, content }) => {
   const demo = content.find((c: any) => c._type === 'demoSection')
   const gettingStarted = content.find((c: any) => c._type === 'gettingStartedSection')
   const features = content.find((c: any) => c._type === 'featuresSection')
+  const clients = content.find((c: any) => c._type === 'clientsSection')
 
   useEffect(() => {
     setMounted(true)
@@ -64,7 +48,7 @@ const Home: NextPage<{ config: any; content: any }> = ({ config, content }) => {
           <DemoSection {...demo} />
           <GettingStartedSection {...gettingStarted} />
           <FeaturesSection {...features} />
-          <UsersSection />
+          <ClientsSection {...clients} />
           <InvolvedSection />
           <FooterHeroSection />
         </Layout>
@@ -79,9 +63,9 @@ Home.getInitialProps = async ({ query }: { query: any }) => {
     console.error('no query')
     return
   }
-  /*if (slug && slug !== '/') {
-    return client.fetch(pageQuery, { slug }).then((res: any) => ({ ...res.page, slug }))
-  }*/
+  if (slug && slug !== '/') {
+    return client.fetch(subpageQuery, { slug }).then((res: any) => ({ ...res.page, slug }))
+  }
 
   // Frontpage
   if (slug && slug === '/') {

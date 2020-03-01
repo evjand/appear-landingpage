@@ -1,4 +1,5 @@
 import Container from '../Container'
+import BrowserTemplate from '../BrowserTemplate'
 
 const InvolvedSection = () => {
   return (
@@ -16,7 +17,15 @@ const InvolvedSection = () => {
           <Container>
             <div className="grid">
               <div className="image">
-                <img src="/Feature3.png" alt="" />
+                <BrowserTemplate url="twitch.tv/purplteam">
+                  <iframe
+                    src="https://player.twitch.tv/?channel=purplteam&muted=true"
+                    width="1280"
+                    frameBorder="0"
+                    scrolling="no"
+                    allowFullScreen
+                  ></iframe>
+                </BrowserTemplate>
               </div>
               <div className="text">
                 <h3>We stream a lot of our development on Twitch!</h3>
@@ -33,7 +42,15 @@ const InvolvedSection = () => {
           <Container>
             <div className="grid">
               <div className="image">
-                <img src="/Feature3.png" alt="" />
+                <BrowserTemplate url="discord.gg/vjWAPvC">
+                  <iframe
+                    src="https://discordapp.com/widget?id=544822662132793344&theme=dark"
+                    width="350"
+                    height="500"
+                    allowTransparency
+                    frameBorder="0"
+                  ></iframe>
+                </BrowserTemplate>
               </div>
               <div className="text">
                 <h3>Continue the conversation on Discord!</h3>

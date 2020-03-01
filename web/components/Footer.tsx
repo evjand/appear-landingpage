@@ -2,11 +2,22 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { FC } from 'react'
 import Container from './Container'
+import BlockContent from '@sanity/block-content-to-react'
 
 import PinIcon from '@iconscout/react-unicons/icons/uil-map-marker-alt'
 import EnvelopeIcon from '@iconscout/react-unicons/icons/uil-envelope-alt'
+import ExternalIcon from '@iconscout/react-unicons/icons/uil-external-link-alt'
 
-const Footer: FC<{ navItems: Array<any>; logo: any }> = ({ navItems, logo }) => {
+interface FooterProps {
+  navItems: Array<any>
+  logo: any
+  socials: Array<any>
+  leftText: Array<any>
+  rightText: Array<any>
+}
+
+const Footer: FC<FooterProps> = ({ navItems, logo, socials, leftText, rightText }) => {
+  console.log(navItems, logo, socials, leftText, rightText)
   const router = useRouter()
   return (
     <footer>
@@ -26,35 +37,44 @@ const Footer: FC<{ navItems: Array<any>; logo: any }> = ({ navItems, logo }) => 
             </a>
           </Link>
           <div className="socials">
-            <a href="">
-              <i className="cib-twitch"></i>
-            </a>
-            <a href="">
-              <i className="cib-discord"></i>
-            </a>
-            <a href="">
-              <i className="cib-facebook"></i>
-            </a>
-            <a href="">
-              <i className="cib-instagram"></i>
-            </a>
+            {socials.map(social => (
+              <a href={social.url} target="_blank">
+                <img src={social.icon.url} alt="" />
+              </a>
+            ))}
           </div>
         </section>
         <nav>
-          <ul>
-            <li>
-              <h4>Product</h4>
-            </li>
-            <li>
-              <a href="">Go to console</a>
-            </li>
-            <li>
-              <a href="">Pricing</a>
-            </li>
-            <li>
-              <a href="">Branding</a>
-            </li>
-          </ul>
+          {navItems.map(navList => (
+            <ul>
+              <li>
+                <h4>{navList.listTitle}</h4>
+              </li>
+              {navList.pages.map(page => {
+                const { slug, displayName, _id } = page
+                const isActive = router.pathname === '/Page' && router.query.slug === slug.current
+                return (
+                  <li key={_id}>
+                    {page.page ? (
+                      <Link
+                        href={{
+                          pathname: '/Page',
+                          query: { slug: slug.current }
+                        }}
+                        as={`/${slug.current}`}
+                      >
+                        <a data-is-active={isActive ? 'true' : 'false'}>{displayName}</a>
+                      </Link>
+                    ) : (
+                      <a key={_id} href={page.link} target="_blank">
+                        {displayName} <ExternalIcon size="16px" />
+                      </a>
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
+          ))}
           <ul>
             <li>
               <h4>Developers</h4>
@@ -119,12 +139,8 @@ const Footer: FC<{ navItems: Array<any>; logo: any }> = ({ navItems, logo }) => 
           </ul>
         </nav>
         <section className="bottom">
-          <p>
-            Powered by <a href="">Sanity.io</a> & <a href="">Next.js</a>
-          </p>
-          <p>
-            A <a href="">Purpl</a> product
-          </p>
+          <BlockContent blocks={leftText} />
+          <BlockContent blocks={rightText} />
         </section>
       </Container>
       <style jsx>{`
@@ -171,6 +187,10 @@ const Footer: FC<{ navItems: Array<any>; logo: any }> = ({ navItems, logo }) => 
         li {
           margin-bottom: 1rem;
           line-height: 1;
+        }
+
+        li a[data-is-active] {
+          font-weight: 500;
         }
 
         li.grid {

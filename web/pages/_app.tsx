@@ -8,13 +8,22 @@ const siteConfigQuery = `
   *[_id == "global-config"] {
     ...,
     logo {asset->{extension, url}},
+    footerLogo {asset->{extension, url}},
     mainNavigation[] -> {
       ...,
       "title": page->title
     },
-    footerNavigation[] -> {
+    footerNavigation[] {
       ...,
-      "title": page->title
+      pages[] -> {
+        ...
+      }
+    },
+    footerSocials[] {
+      ...,
+      icon {
+        "url": asset->url
+      }
     }
   }[0]
   `

@@ -12,6 +12,7 @@ import MoonIcon from '@iconscout/react-unicons/icons/uil-moon'
 const Header: FC<{ navItems: Array<any>; logo: any }> = ({ navItems, logo }) => {
   const router = useRouter()
   const { value, toggle } = useDarkMode(false)
+  console.log(navItems)
   return (
     <header>
       <Container className="container">
@@ -30,33 +31,18 @@ const Header: FC<{ navItems: Array<any>; logo: any }> = ({ navItems, logo }) => 
         </Link>
         <nav className="main-menu">
           <ul>
-            <li>
-              <a href="">Features</a>
-            </li>
-            <li>
-              <a href="" data-active>
-                Resources
-              </a>
-            </li>
-            <li>
-              <a href="">Documentation</a>
-            </li>
-            <li>
-              <a href="">Support</a>
-            </li>
             {navItems &&
               navItems.map(item => {
                 const { slug, title, _id } = item
-                const isActive = router.pathname === '/Home' && router.query.slug === slug.current
+                const isActive = router.pathname === '/Page' && router.query.slug === slug.current
                 return (
                   <li key={_id}>
                     <Link
                       href={{
-                        pathname: '/Home',
+                        pathname: '/Page',
                         query: { slug: slug.current }
                       }}
                       as={`/${slug.current}`}
-                      prefetch
                     >
                       <a data-is-active={isActive ? 'true' : 'false'}>{title}</a>
                     </Link>
@@ -125,7 +111,7 @@ const Header: FC<{ navItems: Array<any>; logo: any }> = ({ navItems, logo }) => 
           font-weight: 400;
         }
 
-        .main-menu a[data-active] {
+        .main-menu a[data-is-active] {
           font-weight: 500;
         }
 
