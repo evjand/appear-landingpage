@@ -9,7 +9,6 @@ const Layout: FC<{ config: any }> = ({ config, children, ...rest }) => {
     console.error('Missing config')
     return <div>Missing config</div>
   }
-  console.log(config)
   const {
     title,
     mainNavigation,

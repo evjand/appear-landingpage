@@ -13,7 +13,6 @@ interface ClientsSectionProps {
 }
 
 const ClientsSection: FC<ClientsSectionProps> = ({ title, subtitle, clients }) => {
-  console.log(title, subtitle, clients)
   return (
     <section>
       <Container>

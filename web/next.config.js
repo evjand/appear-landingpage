@@ -12,13 +12,14 @@ const query = `
       title,
       _createdAt,
       _updatedAt
-  },
-  subpage->{
-    _id,
-    title,
-    _createdAt,
-    _updatedAt
-  }}
+    },
+    subpage->{
+      _id,
+      title,
+      _createdAt,
+      _updatedAt
+    }
+  }
 }
 `
 const reduceRoutes = (obj, route) => {
@@ -47,7 +48,7 @@ module.exports = withTM({
       const { routes = [] } = res
       const nextRoutes = {
         // Routes imported from sanity
-        ...routes.filter(({ slug }) => slug.current).reduce(reduceRoutes, {})
+        ...routes.filter(({ slug, page }) => slug.current && !!page).reduce(reduceRoutes, {})
       }
       return nextRoutes
     })

@@ -34,8 +34,6 @@ const Page: NextPage<{ config: any; content: any }> = ({ config, content }) => {
   const [mounted, setMounted] = useState(false)
   const [initialLoad, setInitialLoad] = useState(false)
 
-  console.log(content)
-
   useEffect(() => {
     setMounted(true)
 
