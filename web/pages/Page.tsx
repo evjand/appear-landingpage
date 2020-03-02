@@ -5,6 +5,30 @@ import client from '../client'
 import Layout from '../components/Layout'
 import { InitialLoadContext } from '../context/initialLoad'
 import subpageQuery from '../queries/subpage'
+import BlockContent from '@sanity/block-content-to-react'
+import Container from '../components/Container'
+
+const renderSection = section => {
+  switch (section._type) {
+    case 'textSection':
+      return (
+        <>
+          <h1>{section.heading}</h1>
+          <BlockContent blocks={section.text} />
+        </>
+      )
+    case 'imageSection':
+      return (
+        <>
+          <h1>{section.heading}</h1>
+          <img src={section.image.asset.url} alt="" />
+          <BlockContent blocks={section.text} />
+        </>
+      )
+    default:
+      return ''
+  }
+}
 
 const Page: NextPage<{ config: any; content: any }> = ({ config, content }) => {
   const [mounted, setMounted] = useState(false)
@@ -31,7 +55,9 @@ const Page: NextPage<{ config: any; content: any }> = ({ config, content }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <InitialLoadContext.Provider value={initialLoad}>
-        <Layout config={config}></Layout>
+        <Layout config={config}>
+          <Container>{content.map(section => renderSection(section))}</Container>
+        </Layout>
       </InitialLoadContext.Provider>
     </>
   )

@@ -28,7 +28,7 @@ const ClientsSection: FC<ClientsSectionProps> = ({ title, subtitle, clients }) =
         </div>
         <div className="logos">
           {clients.map(client => (
-            <img src={client.asset.url} alt="" />
+            <img key={client._key} src={client.asset.url} alt="" />
           ))}
         </div>
       </Container>

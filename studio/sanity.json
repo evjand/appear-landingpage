@@ -1,7 +1,7 @@
 {
   "root": true,
   "project": {
-    "name": "Appear Landingpage"
+    "name": "Appear"
   },
   "api": {
     "projectId": "pllbtbwd",
@@ -32,6 +32,14 @@
     {
       "implements": "part:@sanity/dashboard/config",
       "path": "./dashboardConfig.js"
+    },
+    {
+      "implements": "part:@sanity/base/theme/variables/override-style",
+      "path": "styles/variableOverrides.css"
+    },
+    {
+      "implements": "part:@sanity/base/brand-logo",
+      "path": "components/myLogo.js"
     }
   ]
 }

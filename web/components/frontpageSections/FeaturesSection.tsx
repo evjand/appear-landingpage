@@ -34,7 +34,7 @@ const FeaturesSection: FC<FeaturesSectionProps> = ({ title, subtitle, features }
       </Container>
       <div className={styles.features}>
         {features.map(feature => (
-          <div className={styles.feature}>
+          <div key={feature._key} className={styles.feature}>
             <Container>
               <div className={styles.grid}>
                 <div className={styles.image}>

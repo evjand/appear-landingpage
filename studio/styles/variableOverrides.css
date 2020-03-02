@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+
+:root {
+  --brand-darkest: #84b8f5;
+  --brand-lightest: #f2f8ff;
+  --gray-base: #323232;
+  --brand-primary: #b4d4f9;
+  --brand-primary--inverted: #000;
+  --brand-secondary: #5c63ab;
+  --brand-secondary--inverted: #fff;
+  --main-navigation-color: #fff;
+  --main-navigation-color--inverted: #000;
+}

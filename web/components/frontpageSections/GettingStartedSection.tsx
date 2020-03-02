@@ -30,6 +30,15 @@ const GettingStartedSection: FC<GettingStartedSectionProps> = ({ title, subtitle
   const style = { ...codeStyle, background: bgColor }
   const serializers = {
     hardBreak: false,
+    types: {
+      block: (props: any) => {
+        const node = props.node
+        if (node.children.length === 1 && node.children[0].marks.length === 0) {
+          return BlockContent.defaultSerializers.types.block(props)
+        }
+        return props.children
+      }
+    },
     marks: {
       code: (props: any) => {
         return (

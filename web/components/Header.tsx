@@ -12,7 +12,6 @@ import MoonIcon from '@iconscout/react-unicons/icons/uil-moon'
 const Header: FC<{ navItems: Array<any>; logo: any }> = ({ navItems, logo }) => {
   const router = useRouter()
   const { value, toggle } = useDarkMode(false)
-  console.log(navItems)
   return (
     <header>
       <Container className="container">
@@ -33,7 +32,7 @@ const Header: FC<{ navItems: Array<any>; logo: any }> = ({ navItems, logo }) => 
           <ul>
             {navItems &&
               navItems.map(item => {
-                const { slug, title, _id } = item
+                const { slug, displayName, _id } = item
                 const isActive = router.pathname === '/Page' && router.query.slug === slug.current
                 return (
                   <li key={_id}>
@@ -44,7 +43,7 @@ const Header: FC<{ navItems: Array<any>; logo: any }> = ({ navItems, logo }) => 
                       }}
                       as={`/${slug.current}`}
                     >
-                      <a data-is-active={isActive ? 'true' : 'false'}>{title}</a>
+                      <a data-is-active={isActive ? 'true' : 'false'}>{displayName}</a>
                     </Link>
                   </li>
                 )
@@ -111,7 +110,7 @@ const Header: FC<{ navItems: Array<any>; logo: any }> = ({ navItems, logo }) => 
           font-weight: 400;
         }
 
-        .main-menu a[data-is-active] {
+        .main-menu a[data-is-active='true'] {
           font-weight: 500;
         }
 

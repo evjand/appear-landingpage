@@ -47,7 +47,6 @@ const InvolvedSection = () => {
                     src="https://discordapp.com/widget?id=544822662132793344&theme=dark"
                     width="350"
                     height="500"
-                    allowTransparency
                     frameBorder="0"
                   ></iframe>
                 </BrowserTemplate>
